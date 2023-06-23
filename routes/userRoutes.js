@@ -14,14 +14,14 @@ userRouter.get("/",async(req,res)=>{
 })
 
 userRouter.post("/addUser",async(req,res)=>{
-    const {name,email,password} = req.body
+    const {name,email,password,education,city,mobile} = req.body
     
     try {
         bcrypt.hash(password,5,async(err,hash)=>{
             if(err){
                 res.send(err.message)
             }else{
-                const user = new userModel({name,email,password:hash})
+                const user = new userModel({name,email,password:hash,education,city,mobile})
                 await user.save();
                 res.send("User has been registered");
             }
