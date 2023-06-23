@@ -42,13 +42,16 @@ userRouter.post("/addUser",async(req,res)=>{
                 if(result){
                     let token = jwt.sign({userID:user[0]._id},"career_guide")
                     res.send({"msg":"User logged in successfully", "token":token})
+                    alert("User logged in successfully")
                 }else{
                     res.send({"msg":"Something went wrong","err":err})
+                    alert("Something went wrong")
                 }
             })
             
         }else{
             res.send("User not found");
+            alert("User not found")
         }
     } catch (error) {
      res.send(error.message)
